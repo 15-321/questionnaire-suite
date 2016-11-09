@@ -1,3 +1,4 @@
 /frontEnd/node_modules/
-.gitignor
 .idea/
+/QuestionnaireSuite/build/
+/QuestionnaireSuite/WebContent/WEB-INF/lib/
