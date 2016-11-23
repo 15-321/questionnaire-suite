@@ -73,6 +73,24 @@ gulp.task('watchcss', function () {
     })
 });
 
+/*复制HTML页面*/
+gulp.task('copyhtml',function(){
+    gulp.src('src/*.html')
+        .pipe(gulp.dest('dist'));
+});
+//监测html文件目录，对变动的html进行复制
+gulp.task('watchhtml', function () {
+    gulp.watch('src/*.html', function (event) {
+        var paths = watchPath(event, 'src/', 'dist/');
+        //打印
+        gutil.log(gutil.colors.green(event.type) + ' ' + paths.srcPath);
+        gutil.log('Dist: ' + paths.distPath);
+        //执行
+        gulp.src(paths.srcPath)
+            .pipe(gulp.dest(paths.distDir));
+    })
+});
+
 /*处理图片*/
 // 获取imagemin
 var imagemin = require('gulp-imagemin');
@@ -108,6 +126,6 @@ gulp.task('watchimages', function () {
 
 
 //默认任务
-gulp.task('default', ['watchjs', 'watchcss', 'watchimages']);
+gulp.task('default', ['watchjs', 'watchcss', 'watchimages','watchhtml']);
 
 //TODO 查看autoprefixer用法以及watchPath函数参数
