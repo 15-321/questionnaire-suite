@@ -15,10 +15,86 @@
     <div id="header">
         <h1 class="text-center">Questionnaire Suite<small>[retrieve]</small></h1>
     </div>
+    <form class="form-inline text-center" role="form">
+        <div class="form-group">
+            <label class="sr-only" for="school">学校：</label>
+            <input type="text" class="form-control" id="school" name="school" placeholder="学校：">
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="#">学院：</label>
+                <input class="form-control" type="text" id="#" name="#" placeholder="学院：">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="#">班级：</label>
+                <input class="form-control" type="text" id="#" name="#" placeholder="班级：">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="sex">性别：</label>
+                <select class="form-control" name="sex" id="sex">
+                    <option value="man">男</option>
+                    <option value="women">女</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="searchBtn">查询</button>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center">
+            <tr>
+                <th>选择</th>
+                <th>学校</th>
+                <th>学院</th>
+                <th>班级</th>
+                <th>性别</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>重庆邮电大学</td>
+                <td>计算机科学与技术学院</td>
+                <td>0491301</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>重庆邮电大学</td>
+                <td>计算机科学与技术学院</td>
+                <td>0491301</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>重庆邮电大学</td>
+                <td>计算机科学与技术学院</td>
+                <td>0491301</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>重庆邮电大学</td>
+                <td>计算机科学与技术学院</td>
+                <td>0491301</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>重庆邮电大学</td>
+                <td>计算机科学与技术学院</td>
+                <td>0491301</td>
+                <td>男</td>
+            </tr>
+        </table>
+        <button class="btn btn-default center-block" id="exportBtn">导出</button>
+    </div>
 </div>
 <!--jquery引入-->
 <script src="js/jquery-2.1.4.min.js"></script>
 <!--bootstrap JS引入-->
 <script src="js/bootstrap.js"></script>
+<script src="js/search.js"></script>
 </body>
 </html>

@@ -1,0 +1,1 @@
+$(function(){var n=function(){$.ajax({url:"#",success:function(n){}}),$.ajax({url:"#",success:function(n){}})};n();setInterval(n,5e3)});

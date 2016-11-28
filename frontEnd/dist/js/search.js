@@ -1,0 +1,1 @@
+$(function(){var c=$("#searchBtn"),n=$("#exportBtn");c.click(function(){$.ajax({url:"#",data:{},success:function(c){}})}),n.click(function(){})});
