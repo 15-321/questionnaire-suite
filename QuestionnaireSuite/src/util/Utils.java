@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
@@ -22,19 +24,35 @@ import com.lowagie.text.Section;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class Utils {
+    private static String driverClass = "com.mysql.jdbc.Driver";
+    private static String url = "jdbc:mysql://139.199.192.64:3306/questionnaire";
+    private static String user = "root";
+    private static String password = "root";
+
+    public static Connection getConnection() {
+        try {
+            Class.forName(driverClass);
+            Connection con = DriverManager.getConnection(url, user, password);
+            return con;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 	/**
-	 * Ô¶³Ì Ö´ÐÐÃüÁî²¢·µ»Ø½á¹ûµ÷ÓÃ¹ý³Ì ÊÇÍ¬²½µÄ£¨Ö´ÐÐÍê²Å»á·µ»Ø£©
+	 * Ô¶ï¿½ï¿½ Ö´ï¿½ï¿½ï¿½ï¿½ï¿½î²¢ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Ä£ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Å»á·µï¿½Ø£ï¿½
 	 * 
 	 * @param host
-	 *            Ö÷»úÃû
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param user
-	 *            ÓÃ»§Ãû
+	 *            ï¿½Ã»ï¿½ï¿½ï¿½
 	 * @param psw
-	 *            ÃÜÂë
+	 *            ï¿½ï¿½ï¿½ï¿½
 	 * @param port
-	 *            ¶Ë¿Ú
+	 *            ï¿½Ë¿ï¿½
 	 * @param command
-	 *            ÃüÁî
+	 *            ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static String exec(String host, String user, String psw, int port, String command) {
@@ -78,14 +96,14 @@ public class Utils {
 		// 2 1");
 		// System.out.println(exec);
 
-		// µ÷ÓÃµÚÒ»¸ö·½·¨£¬ÏòCÅÌÉú³ÉÒ»¸öÃû×ÖÎªITextTest.pdf µÄÎÄ¼þ
+		// ï¿½ï¿½ï¿½Ãµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªITextTest.pdf ï¿½ï¿½ï¿½Ä¼ï¿½
 		try {
 			writeSimplePdf();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// µ÷ÓÃµÚ¶þ¸ö·½·¨£¬ÏòCÅÌÃû×ÖÎªITextTest.pdfµÄÎÄ¼þ£¬Ìí¼ÓÕÂ½Ú¡£
+		// ï¿½ï¿½ï¿½ÃµÚ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªITextTest.pdfï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½Ú¡ï¿½
 		try {
 			writeCharpter();
 		} catch (Exception e) {
@@ -95,56 +113,56 @@ public class Utils {
 
 	public static void writeSimplePdf() throws Exception {
 
-		// 1.ÐÂ½¨document¶ÔÏó
-		// µÚÒ»¸ö²ÎÊýÊÇÒ³Ãæ´óÐ¡¡£½ÓÏÂÀ´µÄ²ÎÊý·Ö±ðÊÇ×ó¡¢ÓÒ¡¢ÉÏºÍÏÂÒ³±ß¾à¡£
+		// 1.ï¿½Â½ï¿½documentï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¡ï¿½ï¿½Ïºï¿½ï¿½ï¿½Ò³ï¿½ß¾à¡£
 		Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 
-		// 2.½¨Á¢Ò»¸öÊéÐ´Æ÷(Writer)Óëdocument¶ÔÏó¹ØÁª£¬Í¨¹ýÊéÐ´Æ÷(Writer)¿ÉÒÔ½«ÎÄµµÐ´Èëµ½´ÅÅÌÖÐ¡£
-		// ´´½¨ PdfWriter ¶ÔÏó µÚÒ»¸ö²ÎÊýÊÇ¶ÔÎÄµµ¶ÔÏóµÄÒýÓÃ£¬µÚ¶þ¸ö²ÎÊýÊÇÎÄ¼þµÄÊµ¼ÊÃû³Æ£¬ÔÚ¸ÃÃû³ÆÖÐ»¹»á¸ø³öÆäÊä³öÂ·¾¶¡£
+		// 2.ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½(Writer)ï¿½ï¿½documentï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½(Writer)ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Äµï¿½Ð´ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ PdfWriter ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\ITextTest.pdf"));
 
-		// 3.´ò¿ªÎÄµµ
+		// 3.ï¿½ï¿½ï¿½Äµï¿½
 		document.open();
 
-		// 4.ÏòÎÄµµÖÐÌí¼ÓÄÚÈÝ
-		// Í¨¹ý com.lowagie.text.Paragraph À´Ìí¼ÓÎÄ±¾¡£¿ÉÒÔÓÃÎÄ±¾¼°ÆäÄ¬ÈÏµÄ×ÖÌå¡¢ÑÕÉ«¡¢´óÐ¡µÈµÈÉèÖÃÀ´´´½¨Ò»¸öÄ¬ÈÏ¶ÎÂä
+		// 4.ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		// Í¨ï¿½ï¿½ com.lowagie.text.Paragraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½ï¿½ï¿½ï¿½å¡¢ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ä¬ï¿½Ï¶ï¿½ï¿½ï¿½
 		document.add(new Paragraph("First page of the document."));
 		document.add(new Paragraph("Some more text on the  first page with different color and font type.",
 				FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new Color(255, 150, 200))));
 
-		// 5.¹Ø±ÕÎÄµµ
+		// 5.ï¿½Ø±ï¿½ï¿½Äµï¿½
 		document.close();
 	}
 
 	/**
-	 * Ìí¼Óº¬ÓÐÕÂ½ÚµÄpdfÎÄ¼þ
+	 * ï¿½ï¿½Óºï¿½ï¿½ï¿½ï¿½Â½Úµï¿½pdfï¿½Ä¼ï¿½
 	 * 
 	 * @throws Exception
 	 */
 	public static void writeCharpter() throws Exception {
 
-		// ÐÂ½¨document¶ÔÏó µÚÒ»¸ö²ÎÊýÊÇÒ³Ãæ´óÐ¡¡£½ÓÏÂÀ´µÄ²ÎÊý·Ö±ðÊÇ×ó¡¢ÓÒ¡¢ÉÏºÍÏÂÒ³±ß¾à¡£
+		// ï¿½Â½ï¿½documentï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¡ï¿½ï¿½Ïºï¿½ï¿½ï¿½Ò³ï¿½ß¾à¡£
 		Document document = new Document(PageSize.A4, 20, 20, 20, 20);
 
-		// ½¨Á¢Ò»¸öÊéÐ´Æ÷(Writer)Óëdocument¶ÔÏó¹ØÁª£¬Í¨¹ýÊéÐ´Æ÷(Writer)¿ÉÒÔ½«ÎÄµµÐ´Èëµ½´ÅÅÌÖÐ¡£
+		// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½(Writer)ï¿½ï¿½documentï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½(Writer)ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Äµï¿½Ð´ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("c:\\ITextTest.pdf"));
 
-		// ´ò¿ªÎÄ¼þ
+		// ï¿½ï¿½ï¿½Ä¼ï¿½
 		document.open();
 
-		// ±êÌâ
+		// ï¿½ï¿½ï¿½ï¿½
 		document.addTitle("Hello mingri example");
 
-		// ×÷Õß
+		// ï¿½ï¿½ï¿½ï¿½
 		document.addAuthor("wolf");
 
-		// Ö÷Ìâ
+		// ï¿½ï¿½ï¿½ï¿½
 		document.addSubject("This example explains how to add metadata.");
 		document.addKeywords("iText, Hello mingri");
 		document.addCreator("My program using iText");
 
 		// document.newPage();
-		// ÏòÎÄµµÖÐÌí¼ÓÄÚÈÝ
+		// ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		document.add(new Paragraph("\n"));
 		document.add(new Paragraph("\n"));
 		document.add(new Paragraph("\n"));
@@ -159,7 +177,7 @@ public class Utils {
 		Paragraph title1 = new Paragraph("Chapter 1",
 				FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new Color(0, 0, 255)));
 
-		// ÐÂ½¨ÕÂ½Ú
+		// ï¿½Â½ï¿½ï¿½Â½ï¿½
 		Chapter chapter1 = new Chapter(title1, 1);
 		chapter1.setNumberDepth(0);
 		Paragraph title11 = new Paragraph("This is Section 1 in Chapter 1",
@@ -171,7 +189,7 @@ public class Utils {
 		section1.add(someSectionText);
 		document.add(chapter1);
 
-		// ¹Ø±ÕÎÄµµ
+		// ï¿½Ø±ï¿½ï¿½Äµï¿½
 		document.close();
 	}
 
