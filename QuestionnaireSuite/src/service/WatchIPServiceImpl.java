@@ -12,7 +12,6 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 import beans.IP;
 import dao.WatchIPDao;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import util.Utils;
 
@@ -26,8 +25,7 @@ public class WatchIPServiceImpl implements WatchIPService {
     WatchIPDao dao = new WatchIPDao();
     
     public List<String> getIPsByDistrict(String district) {
-        dao.getIPsByDistrict(district);
-        return null;
+        return dao.getIPsByDistrict(district);
     }
     
     public void saveRecord(List<IP> ips) {
@@ -91,10 +89,22 @@ public class WatchIPServiceImpl implements WatchIPService {
     }
 
     public static void main(String[] args) {
-//        WatchIPServiceImpl ws = new WatchIPServiceImpl();
+        WatchIPServiceImpl ws = new WatchIPServiceImpl();
 //        ws.getOnlineNum();
 //        String t = ws.getAddressByIP("113.250.153.185");
 //        System.out.println(t);
 //        ws.saveRecord(null);
+        
+//        List<IP> t1 = new ArrayList<>();
+//        IP ip1 = new IP("1.1.1.1", "北京");
+//        IP ip2 = new IP("2.2.2.2", "上海");
+//        t1.add(ip1);
+//        t1.add(ip2);
+//        ws.saveRecord(t1);
+        
+        List<String> list = ws.getIPsByDistrict("北京");
+        for (String str : list) {
+            System.out.println(str);
+        }
     }
 }

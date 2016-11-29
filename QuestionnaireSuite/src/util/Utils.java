@@ -25,7 +25,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 public class Utils {
     private static String driverClass = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://139.199.192.64:3306/questionnaire";
+    private static String url = "jdbc:mysql://139.199.192.64:3306/questionnaire?characterEncoding=utf8";
     private static String user = "root";
     private static String password = "root";
 
