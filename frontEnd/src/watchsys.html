@@ -32,100 +32,83 @@
 
 <div class="container">
     <div id="header">
-        <h1 class="text-center">Questionnaire Suite <small>[system state]</small> </h1>
+        <h1 class="text-center"><a href="index.html">Questionnaire Suite </a><small>[system state]</small> </h1>
     </div>
     <!--系统状态表-->
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <caption class="text-center"><h2>系统状况</h2></caption>
-            <tr>
-                <th>系统运行时间：</th>
-                <td>系统当前时间：19:56:47</td>
-                <td>系统到目前为止已运行的时间：59分钟</td>
-                <td>当前登录系统的用户数量:3</td>
-                <td>系统负载:0.00 0.00 0.00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>系统进程：</th>
-                <td>所有启动的进程数</td>
-                <td>正在运行的进程数</td>
-                <td>挂起的进程数</td>
-                <td>停止的进程数</td>
-                <td>僵尸进程数</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>内存占用：</th>
-                <td>物理内存总量</td>
-                <td>物理内存总量</td>
-                <td>已使用的物理内存</td>
-                <td>空闲物理内存</td>
-                <td>内核缓存内存量</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>交换分区：</th>
-                <td>交换区总量</td>
-                <td>已使用交互区总量</td>
-                <td>空闲交换区总量</td>
-                <td>缓冲的交换区总量</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>CPU状态：</th>
-                <td>用户空间占用CPU百分比</td>
-                <td>内核空间占用CPU百分比</td>
-                <td>用户空间内改变过优先级的进程占用CPU百分比</td>
-                <td>空闲CPU百分比</td>
-                <td>等待输入输出CPU时间百分比</td>
-                <td>CPU服务于硬件中断所耗费的时间总额</td>
-                <td>CPU服务软中断所耗费的时间总额</td>
-                <td>Steal Time</td>
-            </tr>
+    <div class="panel panel-default">
+        <div class="panel-heading">系统状况</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="tableSys" class="table table-bordered table-hover">
+                    <tr>
+                        <th>swap：</th>
+                        <td>虚拟内存读取速度(si):<span class="label label-info"></span></td>
+                        <td>虚拟内存写入速度(so):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>IO：</th>
+                        <td>块设备接收块速度(bi):<span class="label label-info"></span></td>
+                        <td>块设备发送块速度(bo):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>system：</th>
+                        <td>每秒CPU中断(in):<span class="label label-info"></span></td>
+                        <td>每秒上下文切换次数(cs):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>CPU：</th>
+                        <td>用户CPU时间(us):<span class="label label-info"></span></td>
+                        <td>系统CPU时间(sy):<span class="label label-info"></span></td>
+                        <td>空闲CPU时间(id):<span class="label label-info"></span></td>
+                        <td>等待IO CPU时间(wa):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>memory:</th>
+                        <td>运行队列(r):<span class="label label-info"></span></td>
+                        <td>阻塞进程(b):<span class="label label-info"></span></td>
+                        <td>已用虚拟内存(swpd):<span class="label label-info"></span></td>
+                        <td>空闲物理内存(free):<span class="label label-info"></span></td>
+                        <td>目录缓存(buff):<span class="label label-info"></span></td>
+                        <td>缓冲区(cache):<span class="label label-info"></span></td>
+                    </tr>
+                </table>
 
-        </table>
+            </div>
+        </div>
     </div>
 
     <!--IP分布表-->
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <caption class="text-center"><h2>问卷地域分布（IP地址）</h2></caption>
-            <thead>
-            <tr>
-                <th>区域</th>
-                <th>人数</th>
-            </tr>
-            </thead>
-
-            <tfoot>
-            <tr>
-                <td colspan="2" class="text-center"><span class="label label-info">当前在线人数：100人</span></td>
-            </tr>
-            </tfoot>
-
-            <tbody>
-            <tr data-toggle="modal" data-target="#myModal">
-                <td>重庆</td>
-                <td>100</td>
-            </tr>
-            <tr data-toggle="modal" data-target="#myModal">
-                <td>四川</td>
-                <td>80</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form id="IPsearch" class="form-inline" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="city">城市：</label>
+                <input type="text" class="form-control" id="city" placeholder="输入你想查询的城市">
+            </div>
+            <button type="submit" id="searchBtn" class="btn btn-default">查询</button>
+        </form>
+        </div>
+        <div class="panel-body">
+            <h3>当前接入系统的<span class="text-info">重庆市</span>IP地址</h3>
+            <ul id="IPlist" class="text-info">
+            </ul>
+        </div>
     </div>
+    <p class="text-center">当前在线:<span id="IPNumber" class="label label-default"></span>人</p>
 </div>
 <!--jquery引入-->
 <script src="js/jquery-2.1.4.min.js"></script>
