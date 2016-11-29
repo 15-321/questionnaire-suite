@@ -41,7 +41,7 @@ public class Utils {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));  
             String buf = null;
             while ((buf = reader.readLine()) != null) {
-            	result+= new String(buf.getBytes("gbk"),"UTF-8")+"    <br>\r\n";  
+            	result+= new String(buf.getBytes("gbk"),"UTF-8")+"\n";
             }  
 		} catch (JSchException | IOException e) {
 			result+=e.getMessage();
