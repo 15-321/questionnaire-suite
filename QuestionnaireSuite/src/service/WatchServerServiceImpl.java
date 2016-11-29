@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.StringTokenizer;
 
 import beans.ServerConditions;
+import dao.WatchServerDao;
 import util.Utils;
 
 public class WatchServerServiceImpl implements WatchServerService {
@@ -24,8 +25,8 @@ public class WatchServerServiceImpl implements WatchServerService {
 		}
 		StringTokenizer tokenStat=  new StringTokenizer(results[2]);		
 		ServerConditions conditions = new ServerConditions();
-		conditions.setDate(new Date());
 		conditions.setR(tokenStat.nextToken().toString());
+		conditions.setDate(new Date());
 		conditions.setB(tokenStat.nextToken().toString());
 		conditions.setWspd(tokenStat.nextToken().toString());
 		conditions.setFree(tokenStat.nextToken().toString());
@@ -42,7 +43,13 @@ public class WatchServerServiceImpl implements WatchServerService {
 		conditions.setId(tokenStat.nextToken().toString());
 		conditions.setWa(tokenStat.nextToken().toString());
 		conditions.setSt(tokenStat.nextToken().toString());
+		WatchServerDao dao = new WatchServerDao();
+		dao.SaveServerConditionsToDB(conditions);
 		return conditions;
+	}
+	public static void main(String[] args) {
+		WatchServerServiceImpl ws = new WatchServerServiceImpl();
+		System.out.println(ws.getConditions());
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ServerConditions {	
 	private int conditionID;
-	private Date date;//查询时间
+	private Date date;
 	private String r;//表示运行队列
 	private String b;//表示阻塞的进程
 	private String wspd;//虚拟内存已使用的大小
@@ -22,14 +22,16 @@ public class ServerConditions {
 	private String id;//空闲 CPU时间
 	private String wa;//等待IO CPU时间
 	private String st;//从虚拟设备中获得的时间
+	private int num;
+	
 	
 	public ServerConditions() {
 		super();
 	}
-
-	public ServerConditions(int conditionID, Date date, String r, String b, String wspd, String free, String buff, String cache, String si,
-			String so, String bi, String bo, String in, String cs, String us, String sy, String id, String wa,
-			String st) {
+	
+	public ServerConditions(int conditionID, Date date, String r, String b, String wspd, String free, String buff,
+			String cache, String si, String so, String bi, String bo, String in, String cs, String us, String sy,
+			String id, String wa, String st) {
 		super();
 		this.conditionID = conditionID;
 		this.date = date;
@@ -52,6 +54,24 @@ public class ServerConditions {
 		this.st = st;
 	}
 
+
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public int getConditionID() {
 		return conditionID;
 	}
@@ -60,13 +80,6 @@ public class ServerConditions {
 		this.conditionID = conditionID;
 	}
 		
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	public String getR() {
 		return r;
