@@ -87,24 +87,5 @@ public class WatchIPServiceImpl implements WatchIPService {
           
         return district; 
     }
-
-    public static void main(String[] args) {
-        WatchIPServiceImpl ws = new WatchIPServiceImpl();
-//        ws.getOnlineNum();
-//        String t = ws.getAddressByIP("113.250.153.185");
-//        System.out.println(t);
-//        ws.saveRecord(null);
-        
-//        List<IP> t1 = new ArrayList<>();
-//        IP ip1 = new IP("1.1.1.1", "北京");
-//        IP ip2 = new IP("2.2.2.2", "上海");
-//        t1.add(ip1);
-//        t1.add(ip2);
-//        ws.saveRecord(t1);
-        
-        List<String> list = ws.getIPsByDistrict("北京");
-        for (String str : list) {
-            System.out.println(str);
-        }
-    }
+    
 }
