@@ -4,10 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -15,6 +11,8 @@ import java.util.StringTokenizer;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import beans.IP;
+import dao.WatchIPDao;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import util.Utils;
 
@@ -25,24 +23,15 @@ public class WatchIPServiceImpl implements WatchIPService {
     String psw = "z1s9j9m4!";
     int port = 22;
     
+    WatchIPDao dao = new WatchIPDao();
+    
     public List<String> getIPsByDistrict(String district) {
-        // TODO Auto-generated method stub
+        dao.getIPsByDistrict(district);
         return null;
     }
     
     public void saveRecord(List<IP> ips) {
-        // TODO save to database
-        Connection con = Utils.getConnection();
-        String sql = "select * from serverconditions";
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getString(2));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        dao.addIPs(ips);
     }
     
     public List<IP> getOnlineNum() {
@@ -102,7 +91,7 @@ public class WatchIPServiceImpl implements WatchIPService {
     }
 
     public static void main(String[] args) {
-        WatchIPServiceImpl ws = new WatchIPServiceImpl();
+//        WatchIPServiceImpl ws = new WatchIPServiceImpl();
 //        ws.getOnlineNum();
 //        String t = ws.getAddressByIP("113.250.153.185");
 //        System.out.println(t);

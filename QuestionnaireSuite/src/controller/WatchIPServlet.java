@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.IP;
+import net.sf.json.JSONArray;
 import service.WatchIPService;
 import service.WatchIPServiceImpl;
 
@@ -25,16 +25,11 @@ public class WatchIPServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    String act = request.getParameter("act");
 	    PrintWriter pw = response.getWriter();
-	    if ("getNum".equals(act)) {
-	        List<IP> ips = ws.getOnlineNum();
-	        pw.write("num" + ":" + ips.size());
-	        ws.saveRecord(ips);
-	    } else {
-	        String district = request.getParameter("district");
-	        List<String> ips = ws.getIPsByDistrict(district);
-	    }
+	    String district = request.getParameter("district");
+	    List<String> ips = ws.getIPsByDistrict(district);
+	    JSONArray ja = JSONArray.fromObject(ips);
+	    pw.write(ja.toString());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
