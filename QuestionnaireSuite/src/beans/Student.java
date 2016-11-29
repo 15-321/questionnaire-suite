@@ -1,37 +1,45 @@
 package beans;
 
 public class Student {
-	public String id;
+	public int id;
 	public String name;
 	public String school;
+	public String major;
 	public String degree;
-	public String profession;
 	public String sex;
 	public String nation;
-	public String accountCategory;
+	public String census;
+	public int complete;
+
 
 	public Student() {
 		super();
 	}
 
-	public Student(String id, String name, String school, String degree, String profession, String sex, String nation,
+	public Student(int id, String name, String school, String degree, String profession, String sex, String nation,
 			String accountCategory) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.school = school;
 		this.degree = degree;
-		this.profession = profession;
 		this.sex = sex;
 		this.nation = nation;
-		this.accountCategory = accountCategory;
+		this.census = accountCategory;
 	}
 
-	public String getId() {
+	public String getMajor() {
+		return major;
+	}
+	
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -59,14 +67,6 @@ public class Student {
 		this.degree = degree;
 	}
 
-	public String getProfession() {
-		return profession;
-	}
-
-	public void setProfession(String profession) {
-		this.profession = profession;
-	}
-
 	public String getSex() {
 		return sex;
 	}
@@ -83,12 +83,19 @@ public class Student {
 		this.nation = nation;
 	}
 
-	public String getAccountCategory() {
-		return accountCategory;
+	public String getCensus() {
+		return census;
 	}
 
-	public void setAccountCategory(String accountCategory) {
-		this.accountCategory = accountCategory;
+	public void setCensus(String census) {
+		this.census = census;
 	}
 
+	public int getComplete() {
+		return complete;
+	}
+	
+	public void setComplete(int complete) {
+		this.complete = complete;
+	}
 }
