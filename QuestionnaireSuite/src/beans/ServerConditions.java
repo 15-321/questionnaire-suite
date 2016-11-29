@@ -1,6 +1,10 @@
 package beans;
 
+import java.util.Date;
+
 public class ServerConditions {	
+	private int conditionID;
+	private Date date;//查询时间
 	private String r;//表示运行队列
 	private String b;//表示阻塞的进程
 	private String wspd;//虚拟内存已使用的大小
@@ -23,10 +27,12 @@ public class ServerConditions {
 		super();
 	}
 
-	public ServerConditions(String r, String b, String wspd, String free, String buff, String cache, String si,
+	public ServerConditions(int conditionID, Date date, String r, String b, String wspd, String free, String buff, String cache, String si,
 			String so, String bi, String bo, String in, String cs, String us, String sy, String id, String wa,
 			String st) {
 		super();
+		this.conditionID = conditionID;
+		this.date = date;
 		this.r = r;
 		this.b = b;
 		this.wspd = wspd;
@@ -44,6 +50,22 @@ public class ServerConditions {
 		this.id = id;
 		this.wa = wa;
 		this.st = st;
+	}
+
+	public int getConditionID() {
+		return conditionID;
+	}
+
+	public void setConditionID(int conditionID) {
+		this.conditionID = conditionID;
+	}
+		
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getR() {

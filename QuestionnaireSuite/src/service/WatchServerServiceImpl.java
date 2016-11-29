@@ -1,5 +1,6 @@
 package service;
 
+import java.util.Date;
 import java.util.StringTokenizer;
 
 import beans.ServerConditions;
@@ -23,6 +24,7 @@ public class WatchServerServiceImpl implements WatchServerService {
 		}
 		StringTokenizer tokenStat=  new StringTokenizer(results[2]);		
 		ServerConditions conditions = new ServerConditions();
+		conditions.setDate(new Date());
 		conditions.setR(tokenStat.nextToken().toString());
 		conditions.setB(tokenStat.nextToken().toString());
 		conditions.setWspd(tokenStat.nextToken().toString());
