@@ -124,8 +124,18 @@ gulp.task('watchimages', function () {
     })
 });
 
+// browser-sync
+var browserSync = require('browser-sync');
+gulp.task('browser-sync', function() {
+    browserSync({
+        files: "**",
+        server: {
+            baseDir: "./"
+        }
+    });
+});
 
 //默认任务
-gulp.task('default', ['watchjs', 'watchcss', 'watchimages','watchhtml']);
+gulp.task('default', ['watchjs', 'watchcss', 'watchimages','watchhtml','browser-sync']);
 
 //TODO 查看autoprefixer用法以及watchPath函数参数
