@@ -8,10 +8,12 @@ $(function () {
     }
     var searchBtn=$('#searchBtn');
     var IPlist=$('#IPlist');
+    var cityCurrent=$('#cityCurrent');
     //查询IP
     searchBtn.click(function(e){
         e.preventDefault();
         var city=$('#city').val();
+        cityCurrent.text(city);
         $.ajax({
             url:'http://localhost:8080/QuestionnaireSuite/WatchIPServlet',
             data:{
