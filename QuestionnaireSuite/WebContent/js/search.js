@@ -31,16 +31,16 @@ $(function () {
                     }
                     jsondata[i].sex=jsondata[i].sex=="male"?"男":"女";
                     switch(jsondata[i].degree){
-                        case -1:
+                        case 0:
                             jsondata[i].degree='专科';
                             break;
-                        case 0:
+                        case 1:
                             jsondata[i].degree="本科";
                             break;
-                        case 1:
+                        case 2:
                             jsondata[i].degree="硕士";
                             break;
-                        case 2:
+                        case 3:
                             jsondata[i].degree="博士";
                             break;
                     }
