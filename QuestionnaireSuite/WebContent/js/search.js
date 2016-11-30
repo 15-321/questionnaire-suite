@@ -20,7 +20,7 @@ $(function () {
         $.ajax({
             url:'http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=query',
             type:'POST',
-            data:conditions,
+            data:JSON.stringify(conditions),
             success:function(data){
                 var jsondata=$.parseJSON(data);
                 var html="";

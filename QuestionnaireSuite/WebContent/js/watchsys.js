@@ -35,7 +35,8 @@ $(function () {
             }
         });
     });
-    var innitData=function(){
+    //查询系统状态请求
+    var watchSys=function(){
         //系统状态
         $.ajax({
             url:'http://localhost:8080/QuestionnaireSuite/WatchServerServlet',
@@ -57,10 +58,25 @@ $(function () {
                 span_sysData[4][3].innerHTML=jsondata.free;
                 span_sysData[4][4].innerHTML=jsondata.buff;
                 span_sysData[4][5].innerHTML=jsondata.cache;
-                IPNumber.text(jsondata.num);
             }
         });
     }
+    //查询在线人数请求
+    var wtachIP=function(){
+        $.ajax({
+            url:"http://localhost:8080/QuestionnaireSuite/WatchIPServlet?act=getNum",
+            type:"GET",
+            success:function(data){
+                IPNumber.text(data);
+            }
+        })
+    }
+    //初始化系统状态和IP数
+    var innitData=function(){
+        watchSys();
+        wtachIP();
+    };
     innitData();
-    var timer=setInterval(innitData,10000);
+    var watchSysTimer=setInterval(watchSys,1000);
+    var watchIPTimer=setInterval(wtachIP,1000);
 })
