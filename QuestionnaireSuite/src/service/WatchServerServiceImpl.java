@@ -14,6 +14,7 @@ public class WatchServerServiceImpl implements WatchServerService {
 	String user = "root";
 	String psw = "z1s9j9m4!";
 	int port = 22;
+	WatchServerDao dao = new WatchServerDao();
 	
 	@Override
 	public ServerConditions getConditions() {
@@ -43,13 +44,15 @@ public class WatchServerServiceImpl implements WatchServerService {
 		conditions.setId(tokenStat.nextToken().toString());
 		conditions.setWa(tokenStat.nextToken().toString());
 		conditions.setSt(tokenStat.nextToken().toString());
-		WatchServerDao dao = new WatchServerDao();
-		dao.SaveServerConditionsToDB(conditions);
 		return conditions;
 	}
 	public static void main(String[] args) {
 		WatchServerServiceImpl ws = new WatchServerServiceImpl();
 		System.out.println(ws.getConditions());
+	}
+	@Override
+	public void saveToDB(ServerConditions conditions) {
+		dao.SaveServerConditionsToDB(conditions);
 	}
 
 }
