@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页--问卷辅助系统</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container">
+    <div id="header">
+        <h1 class="text-center"><a href="index.html">Questionnaire Suite </a><small>[retrieve]</small></h1>
+    </div>
+    <form id="searchForm" class="form-inline text-center" role="form">
+        <div class="form-group">
+            <label class="sr-only" for="school">学校：</label>
+            <input type="text" class="form-control" id="school" name="school" placeholder="学校">
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="major">专业：</label>
+                <input class="form-control" type="text" id="major" name="major" placeholder="专业">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="nation">民族：</label>
+                <input class="form-control" type="text" id="nation" name="nation" placeholder="民族">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="census">户口类别：</label>
+                <input class="form-control" type="text" id="census" name="census" placeholder="户口类别">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="degree">学历：</label>
+                <select class="form-control" name="degree" id="degree">
+                    <option value="-1">专科</option>
+                    <option value="0">本科</option>
+                    <option value="1">博士</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="sex">性别：</label>
+                <select class="form-control" name="sex" id="sex">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="complete">完成度：</label>
+                <select class="form-control" name="complete" id="complete">
+                    <option value="-1">未完成</option>
+                    <option value="0">半完成</option>
+                    <option value="1">完成</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="searchBtn">查询</button>
+    </form>
+    <div class="table-responsive">
+        <table id="tableSearch" class="table table-bordered table-hover text-center">
+            <thead>
+                <tr>
+                    <th>学校</th>
+                    <th>专业</th>
+                    <th>姓名</th>
+                    <th>民族</th>
+                    <th>户口类别</th>
+                    <th>学历</th>
+                    <th>性别</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <button class="btn btn-default center-block" id="exportBtn">导出</button>
+    </div>
+</div>
+<!--jquery引入-->
+<script src="js/jquery-2.1.4.min.js"></script>
+<!--bootstrap JS引入-->
+<script src="js/bootstrap.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页--问卷辅助系统</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!-- Modal 显示IP区县-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="header">
+        <h1 class="text-center"><a href="index.html">Questionnaire Suite </a><small>[system state]</small> </h1>
+    </div>
+    <!--系统状态表-->
+    <div class="panel panel-default">
+        <div class="panel-heading">系统状况</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="tableSys" class="table table-bordered table-hover">
+                    <tr>
+                        <th>swap：</th>
+                        <td>虚拟内存读取速度(si):<span class="label label-info"></span></td>
+                        <td>虚拟内存写入速度(so):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>IO：</th>
+                        <td>块设备接收块速度(bi):<span class="label label-info"></span></td>
+                        <td>块设备发送块速度(bo):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>system：</th>
+                        <td>每秒CPU中断(in):<span class="label label-info"></span></td>
+                        <td>每秒上下文切换次数(cs):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>CPU：</th>
+                        <td>用户CPU时间(us):<span class="label label-info"></span></td>
+                        <td>系统CPU时间(sy):<span class="label label-info"></span></td>
+                        <td>空闲CPU时间(id):<span class="label label-info"></span></td>
+                        <td>等待IO CPU时间(wa):<span class="label label-info"></span></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>memory:</th>
+                        <td>运行队列(r):<span class="label label-info"></span></td>
+                        <td>阻塞进程(b):<span class="label label-info"></span></td>
+                        <td>已用虚拟内存(swpd):<span class="label label-info"></span></td>
+                        <td>空闲物理内存(free):<span class="label label-info"></span></td>
+                        <td>目录缓存(buff):<span class="label label-info"></span></td>
+                        <td>缓冲区(cache):<span class="label label-info"></span></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!--IP分布表-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form id="IPsearch" class="form-inline" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="city">城市：</label>
+                <input type="text" class="form-control" id="city" placeholder="输入你想查询的城市">
+            </div>
+            <button type="submit" id="searchBtn" class="btn btn-default">查询</button>
+        </form>
+        </div>
+        <div class="panel-body">
+            <h3>当前接入系统的<span class="text-info">重庆市</span>IP地址</h3>
+            <ul id="IPlist" class="text-info">
+            </ul>
+        </div>
+    </div>
+    <p class="text-center">当前在线:<span id="IPNumber" class="label label-default"></span>人</p>
+</div>
+<!--jquery引入-->
+<script src="js/jquery-2.1.4.min.js"></script>
+<!--bootstrap JS引入-->
+<script src="js/bootstrap.js"></script>
+<script src="js/watchsys.js"></script>
+</body>
+</html>
