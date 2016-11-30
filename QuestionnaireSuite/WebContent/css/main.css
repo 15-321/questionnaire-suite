@@ -5,6 +5,9 @@ a,a:link,a:visited{
     color: #FFF;
     text-decoration: none;
 }
+#exportPDFBtn,#exportExcelBtn{
+    color: #000;
+}
 #header{
     width: 500px;
     margin: 50px auto;
