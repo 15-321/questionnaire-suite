@@ -22,7 +22,6 @@ public class ServerConditions {
 	private String id;//空闲 CPU时间
 	private String wa;//等待IO CPU时间
 	private String st;//从虚拟设备中获得的时间
-	private int num;
 	
 	
 	public ServerConditions() {
@@ -54,15 +53,6 @@ public class ServerConditions {
 		this.st = st;
 	}
 
-
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
 
 	public Date getDate() {
 		return date;

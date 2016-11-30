@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.IP;
 import beans.ServerConditions;
 import net.sf.json.JSONObject;
-import service.WatchIPService;
-import service.WatchIPServiceImpl;
 import service.WatchServerService;
 import service.WatchServerServiceImpl;
 
@@ -23,7 +19,6 @@ import service.WatchServerServiceImpl;
 public class WatchServerServlet extends HttpServlet {
 	private static final long serialVersionUID = 22L;
 	WatchServerService watchServerService = new WatchServerServiceImpl();
-	//WatchIPService watchIPService = new WatchIPServiceImpl();
        
     public WatchServerServlet() {
         super();
