@@ -14,7 +14,7 @@ public class WatchIPDao {
 
     public void addIPs(List<IP> ips) {
         Connection con = Utils.getConnection();
-        String sql = "Insert Into ips(ip, district) Values(?, ?)";
+        String sql = "Insert Ignore Into ips(ip, district) Values(?, ?)";
         try {
             PreparedStatement pstmt = con.prepareStatement(sql);
             for (IP ip : ips) {
