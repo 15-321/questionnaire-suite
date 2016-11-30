@@ -7,16 +7,19 @@ $(function () {
     searchBtn.click(function(e){
         e.preventDefault();
         var conditions={
-            school:$('#school').val(),
-            major:$('#major').val(),
-            nation:$('#nation').val(),
-            census:$('#census').val(),
-            degree:$('#degree').val(),
-            sex:$('#sex').val(),
-            complete:$('#complete').val()
+            condition:{
+                school:$('#school').val(),
+                major:$('#major').val(),
+                nation:$('#nation').val(),
+                census:$('#census').val(),
+                degree:$('#degree').val(),
+                sex:$('#sex').val(),
+                complete:$('#complete').val()
+            }
         }
         $.ajax({
             url:'http://localhost:8080/QuestionnaireSuite/QueryServlet',
+            type:'POST',
             data:conditions,
             success:function(data){
                 var jsondata=$.parseJSON(data);
