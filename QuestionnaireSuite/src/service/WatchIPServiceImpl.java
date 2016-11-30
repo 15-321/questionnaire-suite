@@ -29,6 +29,9 @@ public class WatchIPServiceImpl implements WatchIPService {
     }
     
     public void saveRecord(List<IP> ips) {
+        for (IP ip : ips) {
+            ip.setDistrict(getAddressByIP(ip.getIp()));
+        }
         dao.addIPs(ips);
     }
     
@@ -49,9 +52,6 @@ public class WatchIPServiceImpl implements WatchIPService {
                         ips.add(ip);
                     }
                 }
-            }
-            for (IP ip : ips) {
-                ip.setDistrict(getAddressByIP(ip.getIp()));
             }
             return ips;
         } else {
