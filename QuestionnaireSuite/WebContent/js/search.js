@@ -3,6 +3,8 @@ $(function () {
     var searchBtn=$('#searchBtn');
     var exportPDFBtn=$('#exportPDFBtn');
     var exportExcelBtn=$('#exportExcelBtn');
+    exportPDFBtn.hide();
+    exportExcelBtn.hide();
     //获取数据
     var tableSearch=$('#tableSearch tbody');
     var action=function(url){
@@ -49,6 +51,8 @@ $(function () {
                     html="<tr><td>"+jsondata[i].school+"</td><td>"+jsondata[i].major+"</td><td>"+jsondata[i].name+"</td><td>"+jsondata[i].nation+"</td><td>"+jsondata[i].census+"</td><td>"+jsondata[i].degree+"</td><td>"+jsondata[i].sex+"</td></tr>";
                     tableSearch.append(html);
                     //下载链接同步修改
+                    exportPDFBtn.show();
+                    exportExcelBtn.show();
                     exportPDFBtn.attr('href',function(){var text=this.href;text+="&condition="+encodeURI(conditions.condition);return text;});
                     exportExcelBtn.attr('href',function(){var text=this.href;text+="&condition="+encodeURI(conditions.condition);return text;});
                 }
