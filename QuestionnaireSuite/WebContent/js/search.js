@@ -1,11 +1,11 @@
 /*Created by u1995 on 2016/11/28.*/
 $(function () {
     var searchBtn=$('#searchBtn');
-    var exportBtn=$('#exportBtn');
+    var exportPDFBtn=$('#exportPDFBtn');
+    var exportExcelBtn=$('#exportExcelBtn');
     //获取数据
     var tableSearch=$('#tableSearch tbody');
-    searchBtn.click(function(e){
-        e.preventDefault();
+    var action=function(url){
         var conditions={
             condition:JSON.stringify({
                 school:$('#school').val(),
@@ -18,7 +18,7 @@ $(function () {
             })
         }
         $.ajax({
-            url:'http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=query',
+            url:url,
             type:'GET',
             data:conditions,
             success:function(data){
@@ -49,9 +49,17 @@ $(function () {
                 }
             }
         });
+    };
+    searchBtn.click(function(e){
+        e.preventDefault();
+        action('http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=query');
     });
-    //导出
-    exportBtn.click(function () {
-
+    //导出PDF
+    exportPDFBtn.click(function () {
+        action('http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=pdf');
+    });
+    //导出Excel
+    exportExcelBtn.click(function () {
+        action('http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=excel');
     });
 });
