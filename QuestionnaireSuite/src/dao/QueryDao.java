@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,11 +10,8 @@ import net.sf.json.JSONObject;
 import util.Utils;
 
 public class QueryDao {
-
-	Utils utils = new Utils();
-
 	public JSONArray get(String query) {
-		Connection connection = utils.getConnection();
+		Connection connection = Utils.getConnection();
 		Statement statement;
 		try {
 			statement = connection.createStatement();
@@ -33,7 +29,7 @@ public class QueryDao {
 				object.put("census", resultSet.getString("census"));
 				jsonArray.add(object);
 			}
-			System.out.println("jsonArray:"+jsonArray.toString());
+//			System.out.println("jsonArray:"+jsonArray.toString());
 			return jsonArray;
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,10 +45,11 @@ public class QueryServlet extends HttpServlet {
 			writer.write(resultStr);
 			writer.close();
 		} else if (operation.equals("excel")) {
-			byte[] bytes = queryService.exportToExcel(result);
-			OutputStream out = response.getOutputStream();
-			out.write(bytes);
-			out.close();
+		    String fileName = "问卷调查报告.xls";
+		    response.setHeader("Content-disposition","attachment;filename=" + new String(fileName.getBytes(), "ISO-8859-1"));  
+	        response.setContentType("application/msexcel");
+	        OutputStream out = response.getOutputStream();
+			queryService.exportToExcel(result, out);
 		} else if (operation.equals("pdf")) {
 			OutputStream outputStream = response.getOutputStream();
 			queryService.exportToPDF(result, outputStream);

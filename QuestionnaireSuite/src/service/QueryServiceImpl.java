@@ -3,6 +3,7 @@ package service;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Iterator;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -62,14 +63,14 @@ public class QueryServiceImpl implements QueryService {
 			}
 		}
 		String query = "select * from questionnaire" + conditionBuilder.toString();
-		System.out.println("query:"+query);
+//		System.out.println("query:"+query);
 		return queryDao.get(query);
 	}
 
-	@Override
-	public byte[] exportToExcel(JSONArray result) {
+	public void exportToExcel(JSONArray result, OutputStream out) {
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet();
+		
 		HSSFRow title = sheet.createRow(0);
 		String[] titles = {"Id", "姓名", "性别", "学校", "专业", "学历", "民族", "户口类型"};
 		String key;
@@ -85,7 +86,7 @@ public class QueryServiceImpl implements QueryService {
 		for(int index = 1; index <= size; index++){
 			HSSFRow row = sheet.createRow(index);
 			JSONObject object = result.getJSONObject(index-1);
-			System.out.println("object:"+object);
+//			System.out.println("object:"+object);
 			cellIndex = 0;
 			Iterator<String> keyIterator = object.keys();
 			while (keyIterator.hasNext()) {
@@ -93,12 +94,15 @@ public class QueryServiceImpl implements QueryService {
 				HSSFCell cell = row.createCell(cellIndex);
 				cellIndex++;
 				cell.setCellValue(object.getString(key));
-				System.out.println("cellValue:"+cell.getStringCellValue());
+//				System.out.println("cellValue:"+cell.getStringCellValue());
 			}
 		}
 		
-		byte[] bytes = workbook.getBytes();
-		return bytes;
+		try {
+            workbook.write(out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@Override
@@ -119,7 +123,7 @@ public class QueryServiceImpl implements QueryService {
 				while(iterator.hasNext()){
 					String key = iterator.next();
 					String info = key + ":" + object.getString(key);
-					System.out.println(info);
+//					System.out.println(info);
 					builder.append(info);
 					builder.append("\n");
 				}
