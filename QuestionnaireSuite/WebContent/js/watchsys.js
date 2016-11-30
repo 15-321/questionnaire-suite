@@ -1,1 +1,65 @@
-$(function(){for(var n=$("#tableSys tr"),e=$("#IPNumber"),r=[],i=0;i<n.length;i++)r[i]=$(n[i]).find("span");var t=$("#searchBtn"),a=$("#IPlist");t.click(function(n){n.preventDefault();var e=$("#city").val();$.ajax({url:"234.txt",data:{district:e},success:function(n){var e=$.parseJSON(n);if(e){a.html("");for(var r=0;r<e.length;r++){var i="<li>"+e[r]+"</li>";a.append(i)}}else{var i="<p class='text-danger'>暂时没有查询结果</p>";a.html(""),a.append(i)}}})});var s=function(){$.ajax({url:"123.txt",success:function(n){var i=$.parseJSON(n).condition;r[0][0].innerHTML=i.si,r[0][1].innerHTML=i.so,r[1][0].innerHTML=i.bi,r[1][1].innerHTML=i.bo,r[2][0].innerHTML=i.in,r[2][1].innerHTML=i.cs,r[3][0].innerHTML=i.us,r[3][1].innerHTML=i.sy,r[3][2].innerHTML=i.id,r[3][3].innerHTML=i.wa,r[4][0].innerHTML=i.r,r[4][1].innerHTML=i.b,r[4][2].innerHTML=i.wspd,r[4][3].innerHTML=i.free,r[4][4].innerHTML=i.buff,r[4][5].innerHTML=i.cache,e.text(i.num)}})};s();setInterval(s,1e4)});
+/*Created by jiangwenyang on 2016/11/28.*/
+$(function () {
+    var tableSysItem=$('#tableSys tr');
+    var IPNumber=$('#IPNumber');
+    var span_sysData=[];
+    for(var i=0;i<tableSysItem.length;i++){
+        span_sysData[i]=$(tableSysItem[i]).find('span');
+    }
+    var searchBtn=$('#searchBtn');
+    var IPlist=$('#IPlist');
+    //查询IP
+    searchBtn.click(function(e){
+        e.preventDefault();
+        var city=$('#city').val();
+        $.ajax({
+            url:'234.txt',
+            data:{
+                "district":city
+            },
+            success:function(data){
+                var jsondata=$.parseJSON(data);
+                if(!jsondata){
+                    var item="<p class='text-danger'>暂时没有查询结果</p>";
+                    IPlist.html('');
+                    IPlist.append(item);
+                }else{
+                    IPlist.html('');
+                    for(var i=0;i<jsondata.length;i++){
+                        var item="<li>"+jsondata[i]+"</li>";
+                        IPlist.append(item);
+                    }
+                }
+            }
+        });
+    });
+    var innitData=function(){
+        //系统状态
+        $.ajax({
+            url:'123.txt',
+            success:function(data){
+                var jsondata=$.parseJSON(data).condition;
+                span_sysData[0][0].innerHTML=jsondata.si;
+                span_sysData[0][1].innerHTML=jsondata.so;
+                span_sysData[1][0].innerHTML=jsondata.bi;
+                span_sysData[1][1].innerHTML=jsondata.bo;
+                span_sysData[2][0].innerHTML=jsondata.in;
+                span_sysData[2][1].innerHTML=jsondata.cs;
+                span_sysData[3][0].innerHTML=jsondata.us;
+                span_sysData[3][1].innerHTML=jsondata.sy;
+                span_sysData[3][2].innerHTML=jsondata.id;
+                span_sysData[3][3].innerHTML=jsondata.wa;
+                span_sysData[4][0].innerHTML=jsondata.r;
+                span_sysData[4][1].innerHTML=jsondata.b;
+                span_sysData[4][2].innerHTML=jsondata.wspd;
+                span_sysData[4][3].innerHTML=jsondata.free;
+                span_sysData[4][4].innerHTML=jsondata.buff;
+                span_sysData[4][5].innerHTML=jsondata.cache;
+                IPNumber.text(jsondata.num);
+                // alert(IPNumber.innerHTML)
+            }
+        });
+    }
+    innitData();
+    var timer=setInterval(innitData,10000);
+})

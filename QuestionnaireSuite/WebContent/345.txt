@@ -1,0 +1,20 @@
+[
+    {"id" : 1,
+    "name" : "Tom",
+    "school" : "ChongqingUniversity",
+    "major" : "ComputerScience",
+    "degree" : 0,
+    "sex" : "male",
+    "nation" : 1,
+    "census" : 1
+    },
+    {"id" : 2,
+    "name" : "Tom",
+    "school" : "ChongqingUniversity",
+    "major" : "ComputerScience",
+    "degree" : -1,
+    "sex" : "male",
+    "nation" : 1,
+    "census" : 1
+    }
+]
