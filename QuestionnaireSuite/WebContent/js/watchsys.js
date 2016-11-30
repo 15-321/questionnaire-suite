@@ -78,5 +78,5 @@ $(function () {
     };
     innitData();
     var watchSysTimer=setInterval(watchSys,1000);
-    var watchIPTimer=setInterval(wtachIP,1000);
+    var watchIPTimer=setInterval(wtachIP,10000);
 })
