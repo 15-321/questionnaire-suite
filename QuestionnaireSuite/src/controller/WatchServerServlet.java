@@ -22,23 +22,25 @@ import service.WatchServerServiceImpl;
 @WebServlet("/WatchServerServlet")
 public class WatchServerServlet extends HttpServlet {
 	private static final long serialVersionUID = 22L;
+	WatchServerService watchServerService = new WatchServerServiceImpl();
+	WatchIPService watchIPService = new WatchIPServiceImpl();
        
     public WatchServerServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		WatchServerService watchServerService = new WatchServerServiceImpl();
-		ServerConditions serverConditions= watchServerService.getConditions();
-		WatchIPService watchIPService = new WatchIPServiceImpl();
 		
+		ServerConditions serverConditions= watchServerService.getConditions();		
 		List<IP> ips = watchIPService.getOnlineNum();
 		serverConditions.setNum(ips.size());
+		serverConditions.setNum(11);
 		JSONObject jo = new JSONObject();
 		jo.element("condition", serverConditions);	
 		PrintWriter writer = response.getWriter();
 		writer.write(jo.toString());
 		writer.close();
+		watchServerService.saveToDB(serverConditions);
 		watchIPService.saveRecord(ips);
 	}
 
