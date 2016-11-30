@@ -13,7 +13,7 @@ $(function () {
         e.preventDefault();
         var city=$('#city').val();
         $.ajax({
-            url:'234.txt',
+            url:'http://localhost:8080/QuestionnaireSuite/WatchIPServlet',
             data:{
                 "district":city
             },
@@ -36,7 +36,7 @@ $(function () {
     var innitData=function(){
         //系统状态
         $.ajax({
-            url:'123.txt',
+            url:'http://localhost:8080/QuestionnaireSuite/WatchServerServlet',
             success:function(data){
                 var jsondata=$.parseJSON(data).condition;
                 span_sysData[0][0].innerHTML=jsondata.si;
