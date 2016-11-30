@@ -7,7 +7,7 @@ $(function () {
     searchBtn.click(function(e){
         e.preventDefault();
         var conditions={
-            condition:{
+            condition:JSON.stringify({
                 school:$('#school').val(),
                 major:$('#major').val(),
                 nation:$('#nation').val(),
@@ -15,12 +15,12 @@ $(function () {
                 degree:$('#degree').val(),
                 sex:$('#sex').val(),
                 complete:$('#complete').val()
-            }
+            })
         }
         $.ajax({
             url:'http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=query',
-            type:'POST',
-            data:JSON.stringify(conditions),
+            type:'GET',
+            data:conditions,
             success:function(data){
                 var jsondata=$.parseJSON(data);
                 var html="";
