@@ -6,6 +6,7 @@ $(function () {
     //获取数据
     var tableSearch=$('#tableSearch tbody');
     var action=function(url){
+        //获取查询参数进行编码
         var conditions={
             condition:JSON.stringify({
                 school:$('#school').val(),
@@ -17,6 +18,7 @@ $(function () {
                 complete:$('#complete').val()
             })
         }
+        //查询请求
         $.ajax({
             url:url,
             type:'GET',
@@ -46,22 +48,16 @@ $(function () {
                     }
                     html="<tr><td>"+jsondata[i].school+"</td><td>"+jsondata[i].major+"</td><td>"+jsondata[i].name+"</td><td>"+jsondata[i].nation+"</td><td>"+jsondata[i].census+"</td><td>"+jsondata[i].degree+"</td><td>"+jsondata[i].sex+"</td></tr>";
                     tableSearch.append(html);
+                    //下载链接同步修改
                     exportPDFBtn.attr('href',function(){var text=this.href;text+="&condition="+encodeURI(conditions.condition);return text;});
                     exportExcelBtn.attr('href',function(){var text=this.href;text+="&condition="+encodeURI(conditions.condition);return text;});
                 }
             }
         });
     };
+    //点击进行查询
     searchBtn.click(function(e){
         e.preventDefault();
         action('http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=query');
     });
-    //导出PDF
-    // exportPDFBtn.click(function () {
-    //     action('http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=pdf');
-    // });
-    //导出Excel
-    // exportExcelBtn.click(function () {
-    //     action('http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=excel');
-    // });
 });
