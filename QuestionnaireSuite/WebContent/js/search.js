@@ -16,7 +16,7 @@ $(function () {
             complete:$('#complete').val()
         }
         $.ajax({
-            url:'345.txt',
+            url:'http://localhost:8080/QuestionnaireSuite/QueryServlet',
             data:conditions,
             success:function(data){
                 var jsondata=$.parseJSON(data);
