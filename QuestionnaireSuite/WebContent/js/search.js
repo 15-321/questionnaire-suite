@@ -18,7 +18,7 @@ $(function () {
             }
         }
         $.ajax({
-            url:'http://localhost:8080/QuestionnaireSuite/QueryServlet',
+            url:'http://localhost:8080/QuestionnaireSuite/QueryServlet?operation=query',
             type:'POST',
             data:conditions,
             success:function(data){

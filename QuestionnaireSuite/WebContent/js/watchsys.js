@@ -58,7 +58,6 @@ $(function () {
                 span_sysData[4][4].innerHTML=jsondata.buff;
                 span_sysData[4][5].innerHTML=jsondata.cache;
                 IPNumber.text(jsondata.num);
-                // alert(IPNumber.innerHTML)
             }
         });
     }
