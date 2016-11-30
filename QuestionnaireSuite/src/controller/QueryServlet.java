@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,22 +29,28 @@ public class QueryServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		String operation = request.getParameter("operation");
 		QueryService queryService = new QueryServiceImpl();
 		String condition = request.getParameter("condition");
 		
+		System.out.println("condition:"+condition);
+		
 		JSONArray result = queryService.query(condition);
 		
-		if (operation.equals("querry")) {
+		if (operation.equals("query")) {
 			PrintWriter writer = response.getWriter();
-			writer.write(result.toString());
+			String resultStr = result.toString();
+			System.out.println("result:"+resultStr);
+			writer.write(resultStr);
 			writer.close();
-		} else if (operation.equals("exportToExcel")) {
+		} else if (operation.equals("excel")) {
 			byte[] bytes = queryService.exportToExcel(result);
 			OutputStream out = response.getOutputStream();
 			out.write(bytes);
 			out.close();
-		} else if (operation.equals("exportToPDF")) {
+		} else if (operation.equals("pdf")) {
 			OutputStream outputStream = response.getOutputStream();
 			queryService.exportToPDF(result, outputStream);
 		}

@@ -33,9 +33,9 @@ public class QueryDao {
 				object.put("census", resultSet.getString("census"));
 				jsonArray.add(object);
 			}
+			System.out.println("jsonArray:"+jsonArray.toString());
 			return jsonArray;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

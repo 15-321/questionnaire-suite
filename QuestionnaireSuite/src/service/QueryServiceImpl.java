@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -23,6 +24,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.log.SysoLogger;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -63,16 +65,18 @@ public class QueryServiceImpl implements QueryService {
 		StringBuilder conditionBuilder = new StringBuilder();
 		int count=0;
 		while(iterator.hasNext()){
-			count++;
 			key = (String) iterator.next();
-			if (count == 1) {
-				conditionBuilder.append(" where");
-				conditionBuilder.append(" "+key+"="+condition.get(key));
-			} else
-				conditionBuilder.append(" and "+key+"="+condition.get(key));
+			if (!condition.getString(key).isEmpty()) {				
+				count++;
+				if (count == 1) {
+					conditionBuilder.append(" where");
+					conditionBuilder.append(" "+key+"='"+condition.get(key)+"'");
+				} else
+					conditionBuilder.append(" and "+key+"='"+condition.get(key)+"'");
+			}
 		}
 		String query = "select * from questionnaire" + conditionBuilder.toString();
-	
+		System.out.println("query:"+query);
 		return queryDao.get(query);
 	}
 
