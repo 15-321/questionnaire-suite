@@ -1,20 +1,8 @@
 package service;
 
-import java.awt.Color;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
-import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -24,12 +12,10 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.log.SysoLogger;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import dao.QueryDao;
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -45,16 +31,16 @@ public class QueryServiceImpl implements QueryService {
 			condition.remove("degree");
 			switch (degree) {
 			case 0:
-				condition.put("degree", "专科");
+				condition.put("degree", "涓撶");
 				break;
 			case 1:
-				condition.put("degree", "本科");
+				condition.put("degree", "鏈");
 				break;
 			case 2:
-				condition.put("degree", "硕士");
+				condition.put("degree", "纭曞＋");
 				break;
 			case 3:
-				condition.put("degree", "博士");
+				condition.put("degree", "鍗氬＋");
 				break;
 			default:
 				break;
@@ -85,10 +71,10 @@ public class QueryServiceImpl implements QueryService {
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet();
 		HSSFRow title = sheet.createRow(0);
-		String[] titles = {"Id", "姓名", "性别", "学校", "专业", "学历", "民族", "户口类型"};
+		String[] titles = {"Id", "濮撳悕", "鎬у埆", "瀛︽牎", "涓撲笟", "瀛﹀巻", "姘戞棌", "鎴峰彛绫诲瀷"};
 		String key;
 		int cellIndex = 0;
-		//添加标题
+		
 		while(cellIndex<titles.length){
 			HSSFCell cell = title.createCell(cellIndex);
 			cell.setCellValue(titles[cellIndex]);
